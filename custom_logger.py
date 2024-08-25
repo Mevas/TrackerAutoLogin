@@ -1,7 +1,7 @@
-import os
 import logging
-import json
+import os
 import sys
+
 from init_configs import read_valid_json_file
 
 dir_ = os.path.join(os.getcwd(), "config/logs/")
@@ -10,11 +10,20 @@ if os.path.isdir(dir_) == False:
 
 log_filename = os.path.join(dir_, "trackerautologin.log")
 
-user_config = read_valid_json_file(os.path.join(os.getcwd(), "config/user_config.json"), 'r')
+user_config = read_valid_json_file(
+    os.path.join(os.getcwd(), "config/user_config.json"), "r"
+)
 
-assert(user_config["LogLevel"].lower() in ["debug", "error", "warning"]),"LogLevel must be ['debug', 'warning', 'error']"
+assert user_config["LogLevel"].lower() in [
+    "debug",
+    "error",
+    "warning",
+], "LogLevel must be ['debug', 'warning', 'error']"
 
-assert(user_config["LogType"].lower() in ["file", "stderr"]),"'LogType' must be ['file', 'stderr']"
+assert user_config["LogType"].lower() in [
+    "file",
+    "stderr",
+], "'LogType' must be ['file', 'stderr']"
 
 if user_config["LogType"].lower() != "file":
 
@@ -26,7 +35,7 @@ if user_config["LogType"].lower() != "file":
         logging.basicConfig(logging=logging.ERROR, stream=sys.stdout)
 
 else:
-    if user_config["LogLevel"].lower() == "debug":                                
+    if user_config["LogLevel"].lower() == "debug":
         logging.basicConfig(filename=log_filename, level=logging.DEBUG)
     elif user_config["LogLevel"].lower() == "warning":
         logging.basicConfig(filename=log_filename, level=logging.WARNING)
