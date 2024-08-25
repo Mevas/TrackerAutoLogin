@@ -16,9 +16,10 @@ user_config = read_valid_json_file(
 
 assert user_config["LogLevel"].lower() in [
     "debug",
+    "info",
     "error",
     "warning",
-], "LogLevel must be ['debug', 'warning', 'error']"
+], "LogLevel must be ['debug', 'info', 'warning', 'error']"
 
 assert user_config["LogType"].lower() in [
     "file",
@@ -26,16 +27,18 @@ assert user_config["LogType"].lower() in [
 ], "'LogType' must be ['file', 'stderr']"
 
 if user_config["LogType"].lower() != "file":
-
     if user_config["LogLevel"].lower() == "debug":
+        logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
+    if user_config["LogLevel"].lower() == "info":
         logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
     elif user_config["LogLevel"].lower() == "warning":
         logging.basicConfig(level=logging.WARNING, stream=sys.stdout)
     else:
         logging.basicConfig(logging=logging.ERROR, stream=sys.stdout)
-
 else:
     if user_config["LogLevel"].lower() == "debug":
+        logging.basicConfig(filename=log_filename, level=logging.DEBUG)
+    if user_config["LogLevel"].lower() == "info":
         logging.basicConfig(filename=log_filename, level=logging.DEBUG)
     elif user_config["LogLevel"].lower() == "warning":
         logging.basicConfig(filename=log_filename, level=logging.WARNING)

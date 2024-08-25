@@ -203,7 +203,7 @@ if __name__ == "__main__":
         curr_time = str(datetime.datetime.now())
 
         if is_connected == True:
-            logging.debug(
+            logging.info(
                 curr_time
                 + " : "
                 + "Successful connection to internet via "
@@ -211,13 +211,12 @@ if __name__ == "__main__":
             )
             for t in user_config.keys():
                 curr_time = str(datetime.datetime.now())
-                print(curr_time, "Attempting " + t)
-                logging.debug(curr_time + " : Attempting to login to " + t)
+                logging.info(curr_time + " : Attempting to login to " + t)
                 tracker = tracker_config[t]
                 successful = TrackerLogin(t, user_config[t], tracker)
                 curr_time = str(datetime.datetime.now())
                 if successful == True:
-                    logging.debug(curr_time + " : Successful login to " + t)
+                    logging.info(curr_time + " : Successful login to " + t)
                 else:
                     logging.warning(curr_time + " : Failed to login to " + t)
 
@@ -242,5 +241,5 @@ if __name__ == "__main__":
 
         curr_time = str(datetime.datetime.now())
 
-        logging.debug(curr_time + " : Sleeping for " + str(loop_sleep) + " hours")
+        logging.info(curr_time + " : Sleeping for " + str(loop_sleep) + " hours")
         time.sleep(loop_sleep * 60 * 60)
