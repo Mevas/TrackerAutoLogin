@@ -27,22 +27,22 @@ def read_valid_json_file(filename, permission):
 tracker_file = os.path.join(os.getcwd(), "config/tracker_config.json")
 tracker_file_temp = os.path.join(os.getcwd(), "config/temp_tracker_config.json")
 
-tconfig_url = "https://raw.githubusercontent.com/mastiffmushroom/TrackerAutoLogin/main/config/tracker_config.json"
-
-if os.path.isfile(tracker_file) == False:
-    urllib.request.urlretrieve(tconfig_url, tracker_file)
-else:
-    urllib.request.urlretrieve(tconfig_url, tracker_file_temp)
-
-    u_dict = read_valid_json_file(tracker_file, "r")
-    t_dict = read_valid_json_file(tracker_file_temp, "r")
-
-    for key in t_dict.keys():
-        u_dict[key] = t_dict[key]
-
-    # tracker_file has already been validated, shouldn't be a need to do it again
-    with open(tracker_file, "w") as f:
-        json.dump(u_dict, f, indent=4, sort_keys=True)
+# tconfig_url = "https://raw.githubusercontent.com/mastiffmushroom/TrackerAutoLogin/main/config/tracker_config.json"
+#
+# if os.path.isfile(tracker_file) == False:
+#     urllib.request.urlretrieve(tconfig_url, tracker_file)
+# else:
+#     urllib.request.urlretrieve(tconfig_url, tracker_file_temp)
+#
+#     u_dict = read_valid_json_file(tracker_file, "r")
+#     t_dict = read_valid_json_file(tracker_file_temp, "r")
+#
+#     for key in t_dict.keys():
+#         u_dict[key] = t_dict[key]
+#
+#     # tracker_file has already been validated, shouldn't be a need to do it again
+#     with open(tracker_file, "w") as f:
+#         json.dump(u_dict, f, indent=4, sort_keys=True)
 
 # Remove the temp tracker file if it still exists
 if os.path.isfile(tracker_file_temp) == True:
