@@ -24,10 +24,10 @@ def read_valid_json_file(filename, permission):
         exit()
 
 
-tracker_file = os.path.join(os.getcwd(), "config/tracker_config.json")
+# tracker_file = os.path.join(os.getcwd(), "tracker_config.json")
 tracker_file_temp = os.path.join(os.getcwd(), "config/temp_tracker_config.json")
 
-# tconfig_url = "https://raw.githubusercontent.com/mastiffmushroom/TrackerAutoLogin/main/config/tracker_config.json"
+# tconfig_url = "https://raw.githubusercontent.com/mastiffmushroom/TrackerAutoLogin/main/tracker_config.json"
 #
 # if os.path.isfile(tracker_file) == False:
 #     urllib.request.urlretrieve(tconfig_url, tracker_file)

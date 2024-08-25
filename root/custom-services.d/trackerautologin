@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv bash
+
+lsiown -R abc:abc /app
+
+exec s6-setuidgid abc \
+    cd /app \
+        python3 ./app.py

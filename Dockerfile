@@ -1,34 +1,26 @@
-FROM python:3.8
-
+FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy
 
 # Adding trusting keys to apt for repositories
 
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+# Install dependencies
+RUN apt-get -y update && \
+    apt-get -y install wget python3 python3-pip
 
-
-# Adding Google Chrome to the repositories
-
+# Add google signature keys and chrome repo
+RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | tee /etc/apt/trusted.gpg.d/google.asc >/dev/null
 RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 
-
-# Updating apt to see and install Google Chrome
-
-RUN apt-get -y update
-
-
-# Magic happens
-
-RUN apt-get install -y google-chrome-stable
+# Install chrome
+RUN apt-get -y update && \
+    apt-get -y install google-chrome-stable
 
 
 # Set display port as an environment variable
-
 ENV DISPLAY=:99
 COPY . /app
 WORKDIR /app
 
-
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-CMD ["python", "./app.py"]
+COPY /root /

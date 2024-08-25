@@ -173,7 +173,7 @@ def TrackerLogin(tracker, user_keys, tracker_keys):
 if __name__ == "__main__":
 
     tracker_config = read_valid_json_file(
-        os.path.join(os.getcwd(), "config/tracker_config.json"), "r"
+        os.path.join(os.getcwd(), "tracker_config.json"), "r"
     )
     user_config = read_valid_json_file(
         os.path.join(os.getcwd(), "config/user_config.json"), "r"
