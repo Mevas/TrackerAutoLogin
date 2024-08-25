@@ -2,6 +2,7 @@
 
 lsiown -R abc:abc /app
 
-exec s6-setuidgid abc \
+# Can't get `s6-setuidgid abc` to work because of chromedriver crashing in docker when not ran as root... rip
+exec \
     cd /app \
         python3 ./app.py

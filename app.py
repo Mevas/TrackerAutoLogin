@@ -24,11 +24,19 @@ def set_chrome_options() -> None:
     # Based on https://stackoverflow.com/a/52340526
     chrome_options.add_argument("start-maximized")
     chrome_options.add_argument("enable-automation")
-    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless=new")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-browser-side-navigation")
     chrome_options.add_argument("--disable-gpu")
+
+    # Random options
+    chrome_options.add_argument("--window-size=1920x1080")
+    chrome_options.add_argument("--blink-settings=imagesEnabled=false")
+    chrome_options.add_argument("--enable-features=NetworkService,NetworkServiceInProcess")
+    chrome_options.add_argument("--disable-software-rasterizer")
+    chrome_options.add_argument("--force-device-scale-factor=1")
+    chrome_options.add_argument("--no-first-run")
+    chrome_options.add_argument("--no-default-browser-check")
     chrome_prefs = {}
     chrome_options.experimental_options["prefs"] = chrome_prefs
     ## Hide images from the browser
