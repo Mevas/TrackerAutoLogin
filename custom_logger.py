@@ -2,14 +2,18 @@ import logging
 import os
 import sys
 
-from selenium.webdriver.remote.remote_connection import LOGGER as seleniumLogger
+from selenium.webdriver.remote.remote_connection import LOGGER as seleniumConnectionLogger
+from selenium.webdriver.common.selenium_manager import logger as seleniumManagerLogger
+from selenium.webdriver.common.service import logger as seleniuServiceLogger
 from urllib3.connectionpool import log as urllibLogger
 
 from init_configs import read_valid_json_file
 
-# Set the threshold for selenium to WARNING
-seleniumLogger.setLevel(logging.WARNING)
-# Set the threshold for urllib3 to WARNING
+# Set the threshold for selenium
+seleniumConnectionLogger.setLevel(logging.INFO)
+seleniumManagerLogger.setLevel(logging.INFO)
+seleniuServiceLogger.setLevel(logging.INFO)
+# Set the threshold for urllib3
 urllibLogger.setLevel(logging.WARNING)
 dir_ = os.path.join(os.getcwd(), "config/logs/")
 if os.path.isdir(dir_) == False:
