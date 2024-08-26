@@ -207,7 +207,7 @@ if __name__ == "__main__":
     while True:
 
         is_connected = CheckConnection(connection_url)
-        loop_sleep = np.round(np.random.uniform(0.5, 1.0) * hours_sleep)
+        loop_sleep = np.round(np.random.uniform(0.8, 1.0) * hours_sleep)
         curr_time = str(datetime.datetime.now())
 
         if is_connected == True:
