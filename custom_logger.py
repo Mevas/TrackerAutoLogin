@@ -2,8 +2,15 @@ import logging
 import os
 import sys
 
+from selenium.webdriver.remote.remote_connection import LOGGER as seleniumLogger
+from urllib3.connectionpool import log as urllibLogger
+
 from init_configs import read_valid_json_file
 
+# Set the threshold for selenium to WARNING
+seleniumLogger.setLevel(logging.WARNING)
+# Set the threshold for urllib3 to WARNING
+urllibLogger.setLevel(logging.WARNING)
 dir_ = os.path.join(os.getcwd(), "config/logs/")
 if os.path.isdir(dir_) == False:
     os.makedirs(dir_)
